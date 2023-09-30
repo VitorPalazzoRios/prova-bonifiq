@@ -36,7 +36,7 @@ namespace ProvaPub.Controllers
 
         //fiz uma forma atraves da injecao de dependencia para remover o uso do new 
         //Para evitar a repetição de código eu fiz uma classe com as propiedades semelhantes a do Customer e Product, e depois herdei em ambas
-
+        //Não consegui testar totalmente pelo fato de ele me dar um erro que não tenho acesso liberado ao SQL Banco de dados...
         [HttpGet("products")]
         public ProductList ListProducts(int page)
         {
