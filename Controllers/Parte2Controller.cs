@@ -19,23 +19,35 @@ namespace ProvaPub.Controllers
 		/// 
 		/// </summary>
 		TestDbContext _ctx;
-		public Parte2Controller(TestDbContext ctx)
+        private readonly ProductService _productService;
+        private readonly CustomerService _customerService;
+
+
+        //Recebendo os servicos como parametro para remover as instâncias dos serviços com new 
+        public Parte2Controller(TestDbContext ctx , ProductService productService, CustomerService customerService)
 		{
 			_ctx = ctx;
-		}
-	
-		[HttpGet("products")]
-		public ProductList ListProducts(int page)
-		{
-			var productService = new ProductService(_ctx);
-			return productService.ListProducts(page);
-		}
 
-		[HttpGet("customers")]
-		public CustomerList ListCustomers(int page)
-		{
-			var customerService = new CustomerService(_ctx);
-			return customerService.ListCustomers(page);
-		}
-	}
+            _productService = productService;
+            _customerService = customerService;
+        }
+
+
+
+        //fiz uma forma atraves da injecao de dependencia para remover o uso do new 
+        //Para evitar a repetição de código eu fiz uma classe com as propiedades semelhantes a do Customer e Product, e depois herdei em ambas
+
+        [HttpGet("products")]
+        public ProductList ListProducts(int page)
+        {
+            return _productService.ListProducts(page);
+        }
+
+        [HttpGet("customers")]
+        public CustomerList ListCustomers(int page)
+        {
+            return _customerService.ListCustomers(page);
+        }
+
+    }
 }

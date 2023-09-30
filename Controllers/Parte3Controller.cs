@@ -19,7 +19,12 @@ namespace ProvaPub.Controllers
 		[HttpGet("orders")]
 		public async Task<Order> PlaceOrder(string paymentMethod, decimal paymentValue, int customerId)
 		{
+			//Método payorder modificado
 			return await new OrderService().PayOrder(paymentMethod, paymentValue, customerId);
-		}
-	}
+
+            //Explicando o que foi feito, eu criei uma interface IPaymentMethod, que tem um método ProcessPayment
+			//Criei classes com os métodos de pagamentos que implementam a interface
+			//Modifique a classe OrderService para usar a interface criada e criei dois exception para retornar uma mensagem
+        }
+    }
 }

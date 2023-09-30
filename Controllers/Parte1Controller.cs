@@ -11,6 +11,8 @@ namespace ProvaPub.Controllers
 	[Route("[controller]")]
 	public class Parte1Controller :  ControllerBase
 	{
+
+		//Alteração feita no RandomService
 		private readonly RandomService _randomService;
 
 		public Parte1Controller(RandomService randomService)
